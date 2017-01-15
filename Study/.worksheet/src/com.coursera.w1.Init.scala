@@ -1,6 +1,8 @@
 package com.coursera.w1
 
-object Init{;import org.scalaide.worksheet.runtime.library.WorksheetSupport._; def main(args: Array[String])=$execute{;$skip(127); 
+import math.abs
+
+object Init{;import org.scalaide.worksheet.runtime.library.WorksheetSupport._; def main(args: Array[String])=$execute{;$skip(144); 
 
   def sumInts(a: Int, b: Int): Int = {
     if (a > b) 0 else a + sumInts(a + 1, b)
@@ -54,7 +56,21 @@ object Init{;import org.scalaide.worksheet.runtime.library.WorksheetSupport._; d
   if(n<=0)m
   else factorial(n-1, m*n);System.out.println("""factorial: (n: Int, m: Int)Int""");$skip(20); val res$5 = 
   
-  factorial(5,1);System.out.println("""res5: Int = """ + $show(res$5))}
+  factorial(5,1);System.out.println("""res5: Int = """ + $show(res$5));$skip(28); 
+  
+  val tolerance = 0.0001;System.out.println("""tolerance  : Double = """ + $show(tolerance ));$skip(72); 
+  def isCloseEnough(x:Double, y:Double) =
+   abs((x-y)/x)/x < tolerance;System.out.println("""isCloseEnough: (x: Double, y: Double)Boolean""");$skip(221); 
+   
+  def fixedPoint(f:Double => Double)(firstGuess:Double)={
+  	def iterate(guess:Double):Double={
+  		val next = f(guess)
+  		if(isCloseEnough(guess,next)) next
+  		else iterate(next)
+  		}
+  		iterate(firstGuess)
+  	};System.out.println("""fixedPoint: (f: Double => Double)(firstGuess: Double)Double""");$skip(36); val res$6 = 
   
   
+  fixedPoint(x => 1 + x/2)(1);System.out.println("""res6: Double = """ + $show(res$6))}
 }

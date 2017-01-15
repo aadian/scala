@@ -53,6 +53,7 @@ object Init2 {
 
   def fixedPoint(f: Double => Double)(firstGuess: Double) = {
     def iterate(guess: Double): Double = {
+    println("guess = " + guess)
       val next = f(guess)
       if (isCloseEnough(guess, next)) next
       else iterate(next)
@@ -61,4 +62,7 @@ object Init2 {
   }                                               //> fixedPoint: (f: Double => Double)(firstGuess: Double)Double
 
   fixedPoint(x => 1 + x / 2)(1)                   //> res4: Double = 1.999755859375
+  
+  def sqrt(x:Double) = fixedPoint(y => x/y)(1)    //> sqrt: (x: Double)Double|
+  sqrt(2)
 }

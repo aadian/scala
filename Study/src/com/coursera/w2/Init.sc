@@ -1,5 +1,7 @@
 package com.coursera.w1
 
+import math.abs
+
 object Init{
 
   def sumInts(a: Int, b: Int): Int = {
@@ -56,5 +58,19 @@ object Init{
   
   factorial(5,1)
   
+  val tolerance = 0.0001
+  def isCloseEnough(x:Double, y:Double) =
+   abs((x-y)/x)/x < tolerance
+   
+  def fixedPoint(f:Double => Double)(firstGuess:Double)={
+  	def iterate(guess:Double):Double={
+  		val next = f(guess)
+  		if(isCloseEnough(guess,next)) next
+  		else iterate(next)
+  		}
+  		iterate(firstGuess)
+  	}
   
+  
+  fixedPoint(x => 1 + x/2)(1)
 }
