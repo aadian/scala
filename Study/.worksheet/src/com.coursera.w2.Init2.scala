@@ -59,8 +59,16 @@ object Init2 {;import org.scalaide.worksheet.runtime.library.WorksheetSupport._;
     iterate(firstGuess)
   };System.out.println("""fixedPoint: (f: Double => Double)(firstGuess: Double)Double""");$skip(34); val res$4 = 
 
-  fixedPoint(x => 1 + x / 2)(1);System.out.println("""res4: Double = """ + $show(res$4));$skip(50); 
+  fixedPoint(x => 1 + x / 2)(1);System.out.println("""res4: Double = """ + $show(res$4));$skip(57); 
   
-  def sqrt(x:Double) = fixedPoint(y => x/y)(1);System.out.println("""sqrt: (x: Double)Double""");$skip(10); val res$5 = 
-  sqrt(2);System.out.println("""res5: Double = """ + $show(res$5))}
+  def sqrt(x:Double) = fixedPoint(y => (y +x/y)/2)(1);System.out.println("""sqrt: (x: Double)Double""");$skip(10); val res$5 = 
+  sqrt(2);System.out.println("""res5: Double = """ + $show(res$5));$skip(64); 
+
+
+  def averageDamp(f:Double => Double)(x:Double) =(x + f(x))/2;System.out.println("""averageDamp: (f: Double => Double)(x: Double)Double""");$skip(64); 
+  
+  def sqrt2(x:Double) =
+  fixedPoint(averageDamp(y=>x/y))(1);System.out.println("""sqrt2: (x: Double)Double""");$skip(16); val res$6 = 
+  
+  sqrt2(2.0);System.out.println("""res6: Double = """ + $show(res$6))}
 }
